@@ -1,4 +1,7 @@
-/* reset CSS */
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  /* reset CSS */
 
 * {
   box-sizing: border-box;
@@ -31,3 +34,7 @@ li {
   list-style: none;
   padding-left: 0;
 }
+
+`;
+
+export default GlobalStyle;
