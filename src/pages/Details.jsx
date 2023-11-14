@@ -84,9 +84,7 @@ const Details = ({ fanLetters, setFanLetters }) => {
     const selectedFanLetter = fanLetters.find((item) => item.id === id);
     setEditInputShown((editInputShown) => !editInputShown);
     if (!editInputShown) {
-      if (selectedFanLetter) {
-        setEditInput(selectedFanLetter.content);
-      }
+      setEditInput(selectedFanLetter.content);
     }
 
     // 수정 사항이 없으면 alert를 띄우고 함수 종료

@@ -25,7 +25,6 @@ const Home = ({ fanLetters, setFanLetters }) => {
   const [selectedMember, setSelectedMember] = useState('전체');
 
   const inputChangeHandler = (e) => {
-    console.log(e);
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
