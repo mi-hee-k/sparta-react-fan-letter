@@ -16,8 +16,9 @@ a {
 button,
 input,
 textarea {
-  font-size: 16px;
+  border: none
 }
+
 
 button:focus,
 button:active,
