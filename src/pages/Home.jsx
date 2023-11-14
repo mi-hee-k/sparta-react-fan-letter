@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { FanLetterContext } from 'context/FanLetterContext';
 
 import AddFanLetter from 'components/Home/AddFanLetter';
 import FanLetterList from 'components/Home/FanLetterList';
@@ -7,7 +8,9 @@ import Tab from 'components/Home/Tab';
 
 // 팬레터 카드
 
-const Home = ({ fanLetters, setFanLetters }) => {
+const Home = () => {
+  const { fanLetters, setFanLetters, selectedMember, setSelectedMember } =
+    useContext(FanLetterContext);
   const [inputs, setInputs] = useState({
     nickname: '',
     content: '',
@@ -21,8 +24,6 @@ const Home = ({ fanLetters, setFanLetters }) => {
     닝닝: false,
     지젤: false,
   });
-
-  const [selectedMember, setSelectedMember] = useState('전체');
 
   const inputChangeHandler = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -64,7 +65,7 @@ const Home = ({ fanLetters, setFanLetters }) => {
     <div>
       <main>
         {/* 멤버별 팬레터 보기 */}
-        <Tab clickHandler={clickHandler} selectedMember={selectedMember} />
+        <Tab clickHandler={clickHandler} />
         {/* 팬레터 등록 */}
         <AddFanLetter
           inputs={inputs}
@@ -72,10 +73,7 @@ const Home = ({ fanLetters, setFanLetters }) => {
           inputChangeHandler={inputChangeHandler}
         />
         {/* 팬레터 */}
-        <FanLetterList
-          fanLetters={fanLetters}
-          selectedMember={selectedMember}
-        />
+        <FanLetterList />
       </main>
     </div>
   );

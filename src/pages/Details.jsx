@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Button, { HomeBtn } from 'components/UI/Button';
 import styled from 'styled-components';
-
+import { FanLetterContext } from 'context/FanLetterContext';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const ScDetailsItems = styled.div`
@@ -65,7 +65,8 @@ const ScFanLetterBtnGroup = styled.div`
   }
 `;
 
-const Details = ({ fanLetters, setFanLetters }) => {
+const Details = () => {
+  const { fanLetters, setFanLetters } = useContext(FanLetterContext);
   const params = useParams();
   const navigate = useNavigate();
   const { id } = params;

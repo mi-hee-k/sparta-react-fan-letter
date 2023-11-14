@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Button from 'components/UI/Button';
+import { FanLetterContext } from 'context/FanLetterContext';
 
 const TabGroup = styled.div`
   background-color: #fff;
@@ -12,7 +13,8 @@ const TabGroup = styled.div`
   border-radius: 10px;
 `;
 
-const Tab = ({ clickHandler, selectedMember }) => {
+const Tab = ({ clickHandler }) => {
+  const { selectedMember } = useContext(FanLetterContext);
   return (
     <TabGroup>
       <Button onClick={clickHandler} $active={selectedMember === '전체'}>

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import FanLetterItem from './FanLetterItem';
+import { FanLetterContext } from 'context/FanLetterContext';
 
 const ScFanLetterItems = styled.div`
   display: flex;
@@ -13,7 +14,8 @@ const ScFanLetterItems = styled.div`
   margin: 0 auto;
 `;
 
-const FanLetterList = ({ fanLetters, selectedMember }) => {
+const FanLetterList = () => {
+  const { fanLetters, selectedMember } = useContext(FanLetterContext);
   const filteredLetters = fanLetters.filter((item) =>
     selectedMember !== '전체' ? item.writedTo === selectedMember : true
   );

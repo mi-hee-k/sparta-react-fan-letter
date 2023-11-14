@@ -5,28 +5,24 @@ import FakeData from '../FakeData.json';
 import Home from '../pages/Home';
 import Details from '../pages/Details';
 import Header from 'components/UI/Header';
+import { FanLetterContext } from 'context/FanLetterContext';
 
 const Router = () => {
   const [fanLetters, setFanLetters] = useState(FakeData);
+  const [selectedMember, setSelectedMember] = useState('전체');
 
   return (
     <BrowserRouter>
       <Header />
-      <Routes>
-        <Route
-          path='/'
-          element={
-            <Home fanLetters={fanLetters} setFanLetters={setFanLetters} />
-          }
-        />
-        <Route
-          path='details/:id'
-          element={
-            <Details fanLetters={fanLetters} setFanLetters={setFanLetters} />
-          }
-        />
-        <Route />
-      </Routes>
+      <FanLetterContext.Provider
+        value={{ fanLetters, setFanLetters, selectedMember, setSelectedMember }}
+      >
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='details/:id' element={<Details />} />
+          <Route />
+        </Routes>
+      </FanLetterContext.Provider>
     </BrowserRouter>
   );
 };
