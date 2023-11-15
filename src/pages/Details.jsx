@@ -84,6 +84,8 @@ const Details = () => {
   const editHandler = () => {
     const selectedFanLetter = fanLetters.find((item) => item.id === id);
     setEditInputShown((editInputShown) => !editInputShown);
+
+    // 수정상태가 아니라면 기존의 content 보여주기
     if (!editInputShown) {
       setEditInput(selectedFanLetter.content);
     }
@@ -97,6 +99,7 @@ const Details = () => {
       return;
     }
 
+    // 수정상태라면 textarea 보여주고 바뀐 content만 update 하기
     if (editInputShown) {
       setFanLetters((prevFanLetters) =>
         prevFanLetters.map((item) =>

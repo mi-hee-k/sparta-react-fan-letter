@@ -6,10 +6,17 @@ import Home from '../pages/Home';
 import Details from '../pages/Details';
 import Header from 'components/UI/Header';
 import { FanLetterContext } from 'context/FanLetterContext';
+import { useSelector } from 'react-redux';
 
 const Router = () => {
   const [fanLetters, setFanLetters] = useState(FakeData);
   const [selectedMember, setSelectedMember] = useState('전체');
+
+  const data = useSelector((state) => {
+    return state;
+  });
+
+  console.log(data);
 
   return (
     <BrowserRouter>
