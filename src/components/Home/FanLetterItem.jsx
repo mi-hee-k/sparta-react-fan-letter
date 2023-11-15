@@ -8,13 +8,16 @@ const ScFanLetterItem = styled.div`
   padding: 20px;
   width: 100%;
   border-radius: 10px;
-  background-color: #fff;
+  border: 1px solid #424242;
+  background-color: #eee;
 `;
 
 const ScImgGroup = styled.figure`
   margin-right: 20px;
 
   img {
+    width: 128px;
+    height: 128px;
     border-radius: 50%;
   }
 `;

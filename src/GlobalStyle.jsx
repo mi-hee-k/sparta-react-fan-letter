@@ -16,7 +16,7 @@ a {
 button,
 input,
 textarea {
-  border: none
+  border: none;
 }
 
 

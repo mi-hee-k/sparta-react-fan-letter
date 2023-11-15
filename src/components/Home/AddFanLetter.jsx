@@ -16,9 +16,18 @@ const ScForm = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #636363;
+  background-color: #9b9b9b;
   padding: 20px;
   margin-bottom: 20px;
+
+  input {
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  select {
+    padding: 10px;
+  }
 
   button {
     background-color: #eeb20c;
@@ -68,6 +77,7 @@ const AddFanLetter = ({ inputs, submitHandler, inputChangeHandler }) => {
             value={inputs.writedTo}
             onChange={inputChangeHandler}
           >
+            <option value='전체'>멤버선택</option>
             <option value='카리나'>카리나</option>
             <option value='윈터'>윈터</option>
             <option value='닝닝'>닝닝</option>

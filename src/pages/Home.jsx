@@ -1,16 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { FanLetterContext } from 'context/FanLetterContext';
 
 import AddFanLetter from 'components/Home/AddFanLetter';
 import FanLetterList from 'components/Home/FanLetterList';
 import Tab from 'components/Home/Tab';
+import { useDispatch, useSelector } from 'react-redux';
+import { addHandler } from 'redux/modules/FanLetter';
+import { selectedHandler } from 'redux/modules/SelectedMember';
 
 // 팬레터 카드
 
 const Home = () => {
-  const { fanLetters, setFanLetters, selectedMember, setSelectedMember } =
-    useContext(FanLetterContext);
+  const fanLetters = useSelector((state) => state.FanLetterReducer);
+  const selectedMember = useSelector((state) => state.SelectedMemberReducer);
+
+  const dispatch = useDispatch();
+
   const [inputs, setInputs] = useState({
     nickname: '',
     content: '',
@@ -35,17 +40,22 @@ const Home = () => {
       alert('닉네임과 내용을 입력해주세요');
       return;
     }
+    if (inputs.writedTo === '' || inputs.writedTo === '전체') {
+      alert('멤버를 선택해주세요');
+      return;
+    }
 
     const newFanLetter = {
       createdAt: new Date().toISOString(),
       nickname: inputs.nickname,
       avatar:
-        'https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/36.jpg',
+        'https://global.discourse-cdn.com/turtlehead/optimized/2X/c/c830d1dee245de3c851f0f88b6c57c83c69f3ace_2_250x250.png',
       content: inputs.content,
       writedTo: inputs.writedTo,
       id: uuidv4(),
     };
-    setFanLetters([...fanLetters, newFanLetter]);
+
+    dispatch(addHandler([...fanLetters, newFanLetter]));
     setInputs({
       nickname: '',
       content: '',
@@ -54,7 +64,7 @@ const Home = () => {
   };
 
   const clickHandler = (e) => {
-    setSelectedMember(e.target.innerHTML);
+    dispatch(selectedHandler(e.target.innerHTML));
     setMemberClick({
       ...memberClick,
       [selectedMember]: true,
@@ -65,7 +75,7 @@ const Home = () => {
     <div>
       <main>
         {/* 멤버별 팬레터 보기 */}
-        <Tab clickHandler={clickHandler} />
+        <Tab clickHandler={clickHandler} selectedMember={selectedMember} />
         {/* 팬레터 등록 */}
         <AddFanLetter
           inputs={inputs}

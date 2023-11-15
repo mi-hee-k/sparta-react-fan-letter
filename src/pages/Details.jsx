@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import Button, { HomeBtn } from 'components/UI/Button';
 import styled from 'styled-components';
-import { FanLetterContext } from 'context/FanLetterContext';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteHandler, editHandler } from 'redux/modules/FanLetter';
 
 const ScDetailsItems = styled.div`
   display: flex;
@@ -66,22 +67,25 @@ const ScFanLetterBtnGroup = styled.div`
 `;
 
 const Details = () => {
-  const { fanLetters, setFanLetters } = useContext(FanLetterContext);
-  const params = useParams();
+  const fanLetters = useSelector((state) => state.FanLetterReducer);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const params = useParams();
   const { id } = params;
   const [editInputShown, setEditInputShown] = useState(false);
   const [editInput, setEditInput] = useState('');
 
-  const deleteHandler = (id) => {
+  const delete_Handler = (id) => {
     if (window.confirm('정말?')) {
-      setFanLetters(fanLetters.filter((item) => item.id !== id));
+      const deletedFanLetters = fanLetters.filter((item) => item.id !== id);
+      console.log(deletedFanLetters);
+      dispatch(deleteHandler(deletedFanLetters));
       navigate('/');
     }
     return;
   };
 
-  const editHandler = () => {
+  const edit_Handler = () => {
     const selectedFanLetter = fanLetters.find((item) => item.id === id);
     setEditInputShown((editInputShown) => !editInputShown);
 
@@ -101,11 +105,10 @@ const Details = () => {
 
     // 수정상태라면 textarea 보여주고 바뀐 content만 update 하기
     if (editInputShown) {
-      setFanLetters((prevFanLetters) =>
-        prevFanLetters.map((item) =>
-          item.id === id ? { ...item, content: editInput } : item
-        )
+      const editFanLetters = fanLetters.map((item) =>
+        item.id === id ? { ...item, content: editInput } : item
       );
+      dispatch(editHandler(editFanLetters));
     }
   };
 
@@ -139,10 +142,10 @@ const Details = () => {
                   )}
                 </FanLetterContent>
                 <ScFanLetterBtnGroup>
-                  <Button onClick={editHandler}>
+                  <Button onClick={edit_Handler}>
                     {editInputShown ? '수정완료' : '수정'}
                   </Button>
-                  <Button onClick={() => deleteHandler(item.id)}>삭제</Button>
+                  <Button onClick={() => delete_Handler(id)}>삭제</Button>
                 </ScFanLetterBtnGroup>
               </ScDetailsItem>
               <HomeBtn onClick={() => navigate('/')}>홈으로</HomeBtn>

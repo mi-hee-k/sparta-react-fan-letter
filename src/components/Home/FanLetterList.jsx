@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import FanLetterItem from './FanLetterItem';
-import { FanLetterContext } from 'context/FanLetterContext';
+import { useSelector } from 'react-redux';
 
 const ScFanLetterItems = styled.div`
   display: flex;
@@ -15,7 +15,8 @@ const ScFanLetterItems = styled.div`
 `;
 
 const FanLetterList = () => {
-  const { fanLetters, selectedMember } = useContext(FanLetterContext);
+  const fanLetters = useSelector((state) => state.FanLetterReducer);
+  const selectedMember = useSelector((state) => state.SelectedMemberReducer);
   const filteredLetters = fanLetters.filter((item) =>
     selectedMember !== '전체' ? item.writedTo === selectedMember : true
   );
