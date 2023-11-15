@@ -1,3 +1,4 @@
+import ImgGroup from 'components/UI/ImgGroup';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -12,15 +13,15 @@ const ScFanLetterItem = styled.div`
   background-color: #eee;
 `;
 
-const ScImgGroup = styled.figure`
-  margin-right: 20px;
+// const ScImgGroup = styled.figure`
+//   margin-right: 20px;
 
-  img {
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-  }
-`;
+//   img {
+//     width: 128px;
+//     height: 128px;
+//     border-radius: 50%;
+//   }
+// `;
 
 const ScLetterInfoGroup = styled.div`
   display: flex;
@@ -44,9 +45,9 @@ const ScLetterInfoGroup = styled.div`
 const FanLetterItem = ({ item }) => {
   return (
     <ScFanLetterItem>
-      <ScImgGroup>
+      <ImgGroup>
         <img src={`${item.avatar}`} alt={item.nickname} />
-      </ScImgGroup>
+      </ImgGroup>
       <ScLetterInfoGroup>
         <span>{item.nickname}</span>
         <span>{item.createdAt}</span>

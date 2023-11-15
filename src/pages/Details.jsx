@@ -4,11 +4,13 @@ import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteHandler, editHandler } from 'redux/modules/FanLetter';
+import ImgGroup from 'components/UI/ImgGroup';
 
 const ScDetailsItems = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   height: 100%;
 `;
 
@@ -16,6 +18,7 @@ const ScDetailsItem = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 70%;
   padding: 20px;
   align-items: center;
   background-color: #eee;
@@ -24,24 +27,42 @@ const ScDetailsItem = styled.div`
   margin-top: 30px;
 `;
 
-const ScFanLetterInfo = styled.div`
+const ScFanLetterHeader = styled.header`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  text-align: center;
+  width: 80%;
+  padding: 10px;
   margin-bottom: 10px;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  div span {
+    width: 50%;
+    font-size: 2rem;
+    margin-right: 20px;
+  }
 `;
 
-const ScWritedTo = styled.div`
-  text-align: left;
-  margin-bottom: 10px;
-`;
-
-const FanLetterContent = styled.div`
+const ScFanLetterBody = styled.div`
   background-color: #fff;
   border-radius: 10px;
   padding: 20px;
   width: 80%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+
+  span {
+    display: inline-block;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
 
   textarea {
     width: 100%;
@@ -123,15 +144,17 @@ const Details = () => {
           return (
             <ScDetailsItems key={item.id}>
               <ScDetailsItem>
-                <ScFanLetterInfo>
-                  <img src={item.avatar} alt={item.id} />
-                  <span>{item.nickname}</span>
+                <ScFanLetterHeader>
+                  <div>
+                    <ImgGroup>
+                      <img src={item.avatar} alt={item.id} />
+                    </ImgGroup>
+                    <span>{item.nickname}</span>
+                  </div>
                   <span>{item.createdAt}</span>
-                </ScFanLetterInfo>
-                <ScWritedTo>
-                  <div>To : {item.writedTo}</div>
-                </ScWritedTo>
-                <FanLetterContent>
+                </ScFanLetterHeader>
+                <ScFanLetterBody>
+                  <span>To : {item.writedTo}</span>
                   {editInputShown ? (
                     <textarea
                       value={editInput}
@@ -140,7 +163,7 @@ const Details = () => {
                   ) : (
                     <p>{item.content}</p>
                   )}
-                </FanLetterContent>
+                </ScFanLetterBody>
                 <ScFanLetterBtnGroup>
                   <Button onClick={edit_Handler}>
                     {editInputShown ? '수정완료' : '수정'}

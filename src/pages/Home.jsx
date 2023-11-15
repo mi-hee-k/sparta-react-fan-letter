@@ -34,6 +34,18 @@ const Home = () => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
+  const formattedDate = (currentDate) => {
+    return new Intl.DateTimeFormat('ko-KR', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+    }).format(currentDate);
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (inputs.nickname.length === 0 || inputs.content.length === 0) {
@@ -45,8 +57,9 @@ const Home = () => {
       return;
     }
 
+    const currentDate = new Date();
     const newFanLetter = {
-      createdAt: new Date().toISOString(),
+      createdAt: formattedDate(currentDate),
       nickname: inputs.nickname,
       avatar:
         'https://global.discourse-cdn.com/turtlehead/optimized/2X/c/c830d1dee245de3c851f0f88b6c57c83c69f3ace_2_250x250.png',
