@@ -20,9 +20,16 @@ const ScForm = styled.form`
   padding: 20px;
   margin-bottom: 20px;
 
-  input {
+  input,
+  textarea {
+    width: 60%;
     padding: 10px;
     border-radius: 10px;
+    vertical-align: middle;
+  }
+
+  textarea {
+    height: 100px;
   }
 
   select {
@@ -30,12 +37,16 @@ const ScForm = styled.form`
   }
 
   button {
+    width: 70%;
+    padding: 14px;
     background-color: #eeb20c;
     font-weight: bold;
   }
 `;
 
 const ScInputGroup = styled.div`
+  width: 100%;
+  text-align: center;
   margin-bottom: 10px;
 
   label {
@@ -60,7 +71,7 @@ const AddFanLetter = ({ inputs, submitHandler, inputChangeHandler }) => {
         </ScInputGroup>
         <ScInputGroup>
           <label htmlFor='content'>내용</label>
-          <input
+          <textarea
             type='text'
             placeholder='최대 100글자까지만 작성할 수 있습니다'
             maxLength={100}

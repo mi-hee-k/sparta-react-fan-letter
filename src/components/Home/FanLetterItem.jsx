@@ -29,8 +29,11 @@ const ScLetterInfoGroup = styled.div`
   align-items: start;
   width: 70%;
 
+  span:nth-child(2) {
+    margin-bottom: 20px;
+  }
+
   p {
-    margin-top: 10px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -47,6 +50,7 @@ const FanLetterItem = ({ item }) => {
       <ScLetterInfoGroup>
         <span>{item.nickname}</span>
         <span>{item.createdAt}</span>
+        <span>To : {item.writedTo}</span>
         <p>{item.content}</p>
       </ScLetterInfoGroup>
     </ScFanLetterItem>
