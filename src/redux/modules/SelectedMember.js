@@ -12,7 +12,6 @@ const initialState = '전체';
 const SelectedMemberReducer = (state = initialState, action) => {
   switch (action.type) {
     case SELECTED_MEMBER:
-      console.log(action.payload);
       return action.payload;
     default:
       return state;

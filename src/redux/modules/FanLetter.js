@@ -30,13 +30,17 @@ export const deleteHandler = (payload) => {
 const FanLetterReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FANLETTER:
-      return action.payload;
+      return [action.payload, ...state];
 
     case EDIT_FANLETTER:
-      return action.payload;
+      return state.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, content: action.payload.editInput }
+          : item
+      );
 
     case DELETE_FANLETTER:
-      return action.payload;
+      return state.filter((item) => item.id !== action.payload);
 
     default:
       return state;

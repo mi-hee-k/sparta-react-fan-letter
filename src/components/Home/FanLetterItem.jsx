@@ -11,6 +11,11 @@ const ScFanLetterItem = styled.div`
   border-radius: 10px;
   border: 1px solid #424242;
   background-color: #eee;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(102%);
+  }
 `;
 
 // const ScImgGroup = styled.figure`

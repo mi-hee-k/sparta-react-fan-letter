@@ -8,8 +8,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addHandler } from 'redux/modules/FanLetter';
 import { selectedHandler } from 'redux/modules/SelectedMember';
 
-// 팬레터 카드
-
 const Home = () => {
   const fanLetters = useSelector((state) => state.FanLetterReducer);
   const selectedMember = useSelector((state) => state.SelectedMemberReducer);
@@ -30,6 +28,8 @@ const Home = () => {
     지젤: false,
   });
 
+  const [error, setError] = useState();
+
   const inputChangeHandler = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
@@ -49,11 +49,19 @@ const Home = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (inputs.nickname.length === 0 || inputs.content.length === 0) {
-      alert('닉네임과 내용을 입력해주세요');
+      setError({
+        title: '닉네임과 내용을 입력해주세요',
+        detail: false,
+      });
+      // alert('닉네임과 내용을 입력해주세요');
       return;
     }
     if (inputs.writedTo === '' || inputs.writedTo === '전체') {
-      alert('멤버를 선택해주세요');
+      setError({
+        title: '멤버를 선택해주세요',
+        detail: false,
+      });
+      // alert('멤버를 선택해주세요');
       return;
     }
 
@@ -68,20 +76,27 @@ const Home = () => {
       id: uuidv4(),
     };
 
-    dispatch(addHandler([...fanLetters, newFanLetter]));
+    dispatch(addHandler(newFanLetter));
     setInputs({
       nickname: '',
       content: '',
-      writedTo: '',
     });
   };
 
   const clickHandler = (e) => {
     dispatch(selectedHandler(e.target.innerHTML));
+    setInputs({
+      ...inputs,
+      writedTo: e.target.innerHTML,
+    });
     setMemberClick({
       ...memberClick,
       [selectedMember]: true,
     });
+  };
+
+  const errorHandler = () => {
+    setError(null);
   };
 
   return (
@@ -94,6 +109,8 @@ const Home = () => {
           inputs={inputs}
           submitHandler={submitHandler}
           inputChangeHandler={inputChangeHandler}
+          error={error}
+          errorHandler={errorHandler}
         />
         {/* 팬레터 */}
         <FanLetterList />

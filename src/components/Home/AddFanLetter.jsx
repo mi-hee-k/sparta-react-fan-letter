@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from 'components/UI/Button';
+import Modal from 'components/UI/Modal';
 
 const ScFormGroup = styled.div`
   display: flex;
@@ -20,22 +21,6 @@ const ScForm = styled.form`
   padding: 20px;
   margin-bottom: 20px;
 
-  input,
-  textarea {
-    width: 60%;
-    padding: 10px;
-    border-radius: 10px;
-    vertical-align: middle;
-  }
-
-  textarea {
-    height: 100px;
-  }
-
-  select {
-    padding: 10px;
-  }
-
   button {
     width: 70%;
     padding: 14px;
@@ -45,18 +30,50 @@ const ScForm = styled.form`
 `;
 
 const ScInputGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   text-align: center;
   margin-bottom: 10px;
+
+  input,
+  textarea {
+    width: 60%;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  textarea {
+    height: 100px;
+    resize: none;
+  }
+
+  select {
+    padding: 10px;
+  }
 
   label {
     margin-right: 10px;
   }
 `;
 
-const AddFanLetter = ({ inputs, submitHandler, inputChangeHandler }) => {
+const AddFanLetter = ({
+  inputs,
+  submitHandler,
+  inputChangeHandler,
+  error,
+  errorHandler,
+}) => {
   return (
     <ScFormGroup>
+      {error && (
+        <Modal
+          title={error.title}
+          detail={error.detail}
+          onConfirm={errorHandler}
+        />
+      )}
       <ScForm onSubmit={submitHandler}>
         <ScInputGroup>
           <label htmlFor='nickname'>닉네임</label>

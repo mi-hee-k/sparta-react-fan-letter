@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteHandler, editHandler } from 'redux/modules/FanLetter';
 import ImgGroup from 'components/UI/ImgGroup';
+import Modal from 'components/UI/Modal';
 
 const ScDetailsItems = styled.div`
   display: flex;
@@ -65,8 +66,10 @@ const ScFanLetterBody = styled.div`
   }
 
   textarea {
+    background-color: transparent;
     width: 100%;
     min-height: 100px;
+    resize: none;
   }
 `;
 
@@ -95,12 +98,16 @@ const Details = () => {
   const { id } = params;
   const [editInputShown, setEditInputShown] = useState(false);
   const [editInput, setEditInput] = useState('');
+  const [error, setError] = useState();
 
   const delete_Handler = (id) => {
+    // setError({
+    //   title: '정말 삭제하시겠습니까?',
+    //   detail: true,
+    // });
+    console.log(id);
     if (window.confirm('정말?')) {
-      const deletedFanLetters = fanLetters.filter((item) => item.id !== id);
-      console.log(deletedFanLetters);
-      dispatch(deleteHandler(deletedFanLetters));
+      dispatch(deleteHandler(id));
       navigate('/');
     }
     return;
@@ -126,15 +133,16 @@ const Details = () => {
 
     // 수정상태라면 textarea 보여주고 바뀐 content만 update 하기
     if (editInputShown) {
-      const editFanLetters = fanLetters.map((item) =>
-        item.id === id ? { ...item, content: editInput } : item
-      );
-      dispatch(editHandler(editFanLetters));
+      dispatch(editHandler({ id, editInput }));
     }
   };
 
   const editInputHandler = (e) => {
     setEditInput(e.target.value);
+  };
+
+  const errorHandler = () => {
+    setError(null);
   };
 
   return (
@@ -143,6 +151,13 @@ const Details = () => {
         if (item.id === id) {
           return (
             <ScDetailsItems key={item.id}>
+              {error && (
+                <Modal
+                  title={error.title}
+                  detail={error.detail}
+                  onConfirm={errorHandler}
+                />
+              )}
               <ScDetailsItem>
                 <ScFanLetterHeader>
                   <div>
@@ -156,12 +171,9 @@ const Details = () => {
                 <ScFanLetterBody>
                   <span>To : {item.writedTo}</span>
                   {editInputShown ? (
-                    <textarea
-                      value={editInput}
-                      onChange={editInputHandler}
-                    ></textarea>
+                    <textarea value={editInput} onChange={editInputHandler} />
                   ) : (
-                    <p>{item.content}</p>
+                    <textarea disabled defaultValue={item.content}></textarea>
                   )}
                 </ScFanLetterBody>
                 <ScFanLetterBtnGroup>
