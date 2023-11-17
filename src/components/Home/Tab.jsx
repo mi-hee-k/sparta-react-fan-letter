@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import Button from 'components/UI/Button';
 
 const TabGroup = styled.div`
-  background-color: #fff;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   gap: 10px;
   width: 100%;
   padding: 20px;
   border-radius: 10px;
+  margin-bottom: 20px;
 `;
 
 const Tab = ({ clickHandler, selectedMember }) => {
@@ -18,17 +19,17 @@ const Tab = ({ clickHandler, selectedMember }) => {
       <Button onClick={clickHandler} $active={selectedMember === '전체'}>
         전체
       </Button>
-      <Button onClick={clickHandler} $active={selectedMember === '카리나'}>
-        카리나
+      <Button onClick={clickHandler} $active={selectedMember === '고죠'}>
+        고죠
       </Button>
-      <Button onClick={clickHandler} $active={selectedMember === '윈터'}>
-        윈터
+      <Button onClick={clickHandler} $active={selectedMember === '이타도리'}>
+        이타도리
       </Button>
-      <Button onClick={clickHandler} $active={selectedMember === '닝닝'}>
-        닝닝
+      <Button onClick={clickHandler} $active={selectedMember === '메구미'}>
+        메구미
       </Button>
-      <Button onClick={clickHandler} $active={selectedMember === '지젤'}>
-        지젤
+      <Button onClick={clickHandler} $active={selectedMember === '노바라'}>
+        노바라
       </Button>
     </TabGroup>
   );

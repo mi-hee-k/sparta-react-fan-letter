@@ -9,24 +9,16 @@ const ScFanLetterItem = styled.div`
   padding: 20px;
   width: 100%;
   border-radius: 10px;
-  border: 1px solid #424242;
-  background-color: #eee;
+  color: #fff;
+  border: 1px solid #240808;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 3px 3px 2px -1px rgba(0, 0, 0, 0.94);
   transition: transform 0.3s ease-in-out;
 
   &:hover {
     transform: scale(102%);
   }
 `;
-
-// const ScImgGroup = styled.figure`
-//   margin-right: 20px;
-
-//   img {
-//     width: 128px;
-//     height: 128px;
-//     border-radius: 50%;
-//   }
-// `;
 
 const ScLetterInfoGroup = styled.div`
   display: flex;
@@ -40,6 +32,8 @@ const ScLetterInfoGroup = styled.div`
   }
 
   p {
+    text-align: left;
+    font-weight: normal;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

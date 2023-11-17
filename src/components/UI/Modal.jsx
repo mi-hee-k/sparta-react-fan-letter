@@ -48,7 +48,6 @@ const ScModalGroup = styled.div`
 `;
 
 const Modal = (props) => {
-  console.log(props);
   return (
     <>
       <Backdrop onClick={props.onConfirm} />

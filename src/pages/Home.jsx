@@ -7,18 +7,40 @@ import Tab from 'components/Home/Tab';
 import { useDispatch, useSelector } from 'react-redux';
 import { addHandler } from 'redux/modules/FanLetter';
 import { selectedHandler } from 'redux/modules/SelectedMember';
+import Button from 'components/UI/Button';
+import styled from 'styled-components';
+
+const ScExpandGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    background-color: #fff;
+    border: 3px dashed #000;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+    width: 30%;
+  }
+`;
 
 const Home = () => {
-  const fanLetters = useSelector((state) => state.FanLetterReducer);
+  // const fanLetters = useSelector((state) => state.FanLetterReducer);
   const selectedMember = useSelector((state) => state.SelectedMemberReducer);
 
   const dispatch = useDispatch();
+
+  const [expand, setExpand] = useState(true);
 
   const [inputs, setInputs] = useState({
     nickname: '',
     content: '',
     writedTo: '',
   });
+
+  const inputChangeHandler = (e) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  };
 
   const [memberClick, setMemberClick] = useState({
     전체: false,
@@ -29,10 +51,6 @@ const Home = () => {
   });
 
   const [error, setError] = useState();
-
-  const inputChangeHandler = (e) => {
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
-  };
 
   const formattedDate = (currentDate) => {
     return new Intl.DateTimeFormat('ko-KR', {
@@ -95,27 +113,33 @@ const Home = () => {
     });
   };
 
+  const expandToggler = () => {
+    setExpand((expand) => !expand);
+  };
+
   const errorHandler = () => {
     setError(null);
   };
 
   return (
-    <div>
-      <main>
-        {/* 멤버별 팬레터 보기 */}
-        <Tab clickHandler={clickHandler} selectedMember={selectedMember} />
-        {/* 팬레터 등록 */}
-        <AddFanLetter
-          inputs={inputs}
-          submitHandler={submitHandler}
-          inputChangeHandler={inputChangeHandler}
-          error={error}
-          errorHandler={errorHandler}
-        />
-        {/* 팬레터 */}
-        <FanLetterList />
-      </main>
-    </div>
+    <main>
+      {/* 멤버별 팬레터 보기 */}
+      <Tab clickHandler={clickHandler} selectedMember={selectedMember} />
+      {/* 팬레터 등록 */}
+
+      <AddFanLetter
+        inputs={inputs}
+        submitHandler={submitHandler}
+        inputChangeHandler={inputChangeHandler}
+        error={error}
+        errorHandler={errorHandler}
+      />
+      <ScExpandGroup>
+        <Button onClick={expandToggler}>📣 りょういき てんきあ --- !!! </Button>
+      </ScExpandGroup>
+      {/* 팬레터 */}
+      {expand && <FanLetterList />}
+    </main>
   );
 };
 

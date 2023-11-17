@@ -7,8 +7,7 @@ const ScFormGroup = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-
-  max-width: 50%;
+  max-width: 60%;
   margin: 0 auto;
 `;
 
@@ -17,14 +16,17 @@ const ScForm = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #9b9b9b;
+  background-color: rgba(44, 0, 1, 0.9);
+  border-radius: 10px;
+  color: #fff;
+  font-weight: bold;
   padding: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 
   button {
     width: 70%;
     padding: 14px;
-    background-color: #eeb20c;
+    background-color: #f2bf27;
     font-weight: bold;
   }
 `;
@@ -106,10 +108,10 @@ const AddFanLetter = ({
             onChange={inputChangeHandler}
           >
             <option value='전체'>멤버선택</option>
-            <option value='카리나'>카리나</option>
-            <option value='윈터'>윈터</option>
-            <option value='닝닝'>닝닝</option>
-            <option value='지젤'>지젤</option>
+            <option value='고죠'>고죠</option>
+            <option value='이타도리'>이타도리</option>
+            <option value='메구미'>메구미</option>
+            <option value='노바라'>노바라</option>
           </select>
         </ScInputGroup>
         <Button>팬레터 등록</Button>

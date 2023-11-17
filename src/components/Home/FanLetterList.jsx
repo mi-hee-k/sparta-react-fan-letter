@@ -9,9 +9,15 @@ const ScFanLetterItems = styled.div`
   flex-direction: column;
   gap: 20px;
   padding: 20px;
-  background-color: #eee;
-  max-width: 50%;
+  background-color: rgba(44, 0, 1, 0.9);
+  max-width: 60%;
   margin: 0 auto;
+  text-align: center;
+
+  p {
+    color: #fff;
+    font-weight: bold;
+  }
 `;
 
 const FanLetterList = () => {
@@ -22,13 +28,15 @@ const FanLetterList = () => {
   );
   return (
     <ScFanLetterItems>
-      {filteredLetters && filteredLetters.length > 0
-        ? filteredLetters.map((item) => (
-            <Link to={`/details/${item.id}`} key={item.id}>
-              <FanLetterItem item={item} />
-            </Link>
-          ))
-        : '팬레터가 없습니다'}
+      {filteredLetters && filteredLetters.length > 0 ? (
+        filteredLetters.map((item) => (
+          <Link to={`/details/${item.id}`} key={item.id}>
+            <FanLetterItem item={item} />
+          </Link>
+        ))
+      ) : (
+        <p>'팬레터가 없습니다'</p>
+      )}
     </ScFanLetterItems>
   );
 };

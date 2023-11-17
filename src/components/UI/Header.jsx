@@ -1,26 +1,51 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HeaderGroup = styled.header`
-  background-color: #eee;
+  background-color: transparent;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
   width: 100%;
-  height: 250px;
+  height: 420px;
 `;
 
-const Title = styled.h1`
+const ScTitleGroup = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(43, 9, 9, 0.6);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  width: 50%;
+  height: 50%;
+  text-align: center;
+
+  p {
+    color: #c2c2c2;
+  }
+`;
+
+const ScTitle = styled.h1`
   font-size: 2rem;
-  color: red;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 
 const Header = () => {
   return (
     <HeaderGroup>
-      <Title>에스파 팬레터 콜렉션</Title>
+      <ScTitleGroup>
+        <Link to={'/'}>
+          <ScTitle>주술회전 팬레터 컬렉션</ScTitle>
+          <p>
+            &#44;&#44; <br /> 살아가는 방식으로
+            <br /> 후회하고 싶진 않아 <br /> &#44;&#44;
+          </p>
+        </Link>
+      </ScTitleGroup>
     </HeaderGroup>
   );
 };

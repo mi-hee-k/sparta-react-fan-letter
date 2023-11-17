@@ -22,7 +22,9 @@ const ScDetailsItem = styled.div`
   width: 70%;
   padding: 20px;
   align-items: center;
-  background-color: #eee;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #cacaca;
+  /* border: 2px solid #530707; */
   border-radius: 10px;
   margin-bottom: 30px;
   margin-top: 30px;
@@ -34,8 +36,10 @@ const ScFanLetterHeader = styled.header`
   align-items: center;
   text-align: center;
   width: 80%;
-  padding: 10px;
-  margin-bottom: 10px;
+  background-color: rgba(44, 0, 1, 0.9);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 20px;
 
   div {
     display: flex;
@@ -52,7 +56,8 @@ const ScFanLetterHeader = styled.header`
 
 const ScFanLetterBody = styled.div`
   background-color: #fff;
-  border-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   padding: 20px;
   width: 80%;
   margin-bottom: 20px;
@@ -63,10 +68,12 @@ const ScFanLetterBody = styled.div`
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 10px;
+    color: #2c0001;
   }
 
   textarea {
     background-color: transparent;
+
     width: 100%;
     min-height: 100px;
     resize: none;
@@ -79,14 +86,13 @@ const ScFanLetterBtnGroup = styled.div`
   align-items: center;
   width: 100%;
 
-  button {
-    background-color: #a10000;
-    color: #fff;
-  }
-
   button:first-child {
     margin-right: 10px;
-    background-color: #07bb70;
+  }
+
+  button:last-child {
+    background-color: #a10000;
+    color: #fff;
   }
 `;
 
@@ -101,11 +107,6 @@ const Details = () => {
   const [error, setError] = useState();
 
   const delete_Handler = (id) => {
-    // setError({
-    //   title: '정말 삭제하시겠습니까?',
-    //   detail: true,
-    // });
-    console.log(id);
     if (window.confirm('정말?')) {
       dispatch(deleteHandler(id));
       navigate('/');
@@ -173,7 +174,7 @@ const Details = () => {
                   {editInputShown ? (
                     <textarea value={editInput} onChange={editInputHandler} />
                   ) : (
-                    <textarea disabled defaultValue={item.content}></textarea>
+                    <textarea disabled defaultValue={item.content} />
                   )}
                 </ScFanLetterBody>
                 <ScFanLetterBtnGroup>
