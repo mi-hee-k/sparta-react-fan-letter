@@ -126,7 +126,6 @@ const Home = () => {
       {/* 멤버별 팬레터 보기 */}
       <Tab clickHandler={clickHandler} selectedMember={selectedMember} />
       {/* 팬레터 등록 */}
-
       <AddFanLetter
         inputs={inputs}
         submitHandler={submitHandler}

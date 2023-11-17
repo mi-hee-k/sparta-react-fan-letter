@@ -24,7 +24,6 @@ const ScDetailsItem = styled.div`
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
   color: #cacaca;
-  /* border: 2px solid #530707; */
   border-radius: 10px;
   margin-bottom: 30px;
   margin-top: 30px;
@@ -36,7 +35,7 @@ const ScFanLetterHeader = styled.header`
   align-items: center;
   text-align: center;
   width: 80%;
-  background-color: rgba(44, 0, 1, 0.9);
+  background-color: rgba(104, 0, 2, 0.6);
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   padding: 20px;
@@ -48,7 +47,7 @@ const ScFanLetterHeader = styled.header`
   }
 
   div span {
-    width: 50%;
+    width: 70%;
     font-size: 2rem;
     margin-right: 20px;
   }
