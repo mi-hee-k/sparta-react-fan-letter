@@ -44,10 +44,10 @@ const Home = () => {
 
   const [memberClick, setMemberClick] = useState({
     전체: false,
-    카리나: false,
-    윈터: false,
-    닝닝: false,
-    지젤: false,
+    고죠: false,
+    이타도리: false,
+    메구미: false,
+    노바라: false,
   });
 
   const [error, setError] = useState();
@@ -66,9 +66,12 @@ const Home = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (inputs.nickname.length === 0 || inputs.content.length === 0) {
+    if (
+      inputs.nickname.trim().length === 0 ||
+      inputs.content.trim().length === 0
+    ) {
       setError({
-        title: '닉네임과 내용을 입력해주세요',
+        title: '닉네임과 내용은 공백으로 등록할 수 없습니다',
         detail: false,
       });
       // alert('닉네임과 내용을 입력해주세요');

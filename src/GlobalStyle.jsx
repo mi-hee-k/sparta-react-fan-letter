@@ -30,15 +30,6 @@ textarea {
   border: none;
 }
 
-button:focus,
-button:active,
-input:focus,
-input:active,
-textarea:focus,
-textarea:active {
-  outline: none;
-}
-
 ul,
 ol,
 li {

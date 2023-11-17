@@ -9,7 +9,7 @@ const HeaderGroup = styled.header`
   align-items: center;
   position: relative;
   width: 100%;
-  height: 420px;
+  height: 400px;
 `;
 
 const ScTitleGroup = styled.div`
@@ -41,7 +41,7 @@ const Header = () => {
         <Link to={'/'}>
           <ScTitle>주술회전 팬레터 컬렉션</ScTitle>
           <p>
-            &#44;&#44; <br /> 살아가는 방식으로
+            &#44;&#44; <br /> 살아가는 방식때문에
             <br /> 후회하고 싶진 않아 <br /> &#44;&#44;
           </p>
         </Link>

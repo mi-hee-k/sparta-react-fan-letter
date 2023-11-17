@@ -35,7 +35,7 @@ const ScInputGroup = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 70%;
   text-align: center;
   margin-bottom: 10px;
 
@@ -53,9 +53,15 @@ const ScInputGroup = styled.div`
 
   select {
     padding: 10px;
+    width: 60%;
+    border-radius: 10px;
+  }
+
+  option {
   }
 
   label {
+    width: 40%;
     margin-right: 10px;
   }
 `;

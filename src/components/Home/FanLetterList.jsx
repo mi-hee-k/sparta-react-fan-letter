@@ -10,6 +10,7 @@ const ScFanLetterItems = styled.div`
   gap: 20px;
   padding: 20px;
   background-color: rgba(44, 0, 1, 0.9);
+  border-radius: 10px;
   max-width: 60%;
   margin: 0 auto;
   text-align: center;
