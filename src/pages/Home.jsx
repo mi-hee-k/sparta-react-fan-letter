@@ -25,12 +25,10 @@ const ScExpandGroup = styled.div`
 `;
 
 const Home = () => {
-  // const fanLetters = useSelector((state) => state.FanLetterReducer);
   const selectedMember = useSelector((state) => state.SelectedMemberReducer);
   const dispatch = useDispatch();
 
   const [expand, setExpand] = useState(true);
-  const [error, setError] = useState();
   const [inputs, setInputs] = useState({
     nickname: '',
     content: '',
@@ -69,19 +67,11 @@ const Home = () => {
       inputs.nickname.trim().length === 0 ||
       inputs.content.trim().length === 0
     ) {
-      setError({
-        title: '닉네임과 내용은 공백으로 등록할 수 없습니다',
-        detail: false,
-      });
-      // alert('닉네임과 내용을 입력해주세요');
+      alert('닉네임과 내용을 입력해주세요');
       return;
     }
     if (inputs.writedTo === '' || inputs.writedTo === '전체') {
-      setError({
-        title: '멤버를 선택해주세요',
-        detail: false,
-      });
-      // alert('멤버를 선택해주세요');
+      alert('멤버를 선택해주세요');
       return;
     }
 
@@ -121,11 +111,6 @@ const Home = () => {
     });
   };
 
-  // 모달 상태변경
-  const errorHandler = () => {
-    setError(null);
-  };
-
   return (
     <main>
       {/* 멤버별 팬레터 보기 */}
@@ -135,8 +120,6 @@ const Home = () => {
         inputs={inputs}
         submitHandler={submitHandler}
         inputChangeHandler={inputChangeHandler}
-        error={error}
-        errorHandler={errorHandler}
       />
       <ScExpandGroup>
         <Button onClick={expandToggler}>📣 りょういきてんかい --- !!! </Button>

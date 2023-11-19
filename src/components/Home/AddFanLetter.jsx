@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from 'components/UI/Button';
-import Modal from 'components/UI/Modal';
 
 const ScFormGroup = styled.div`
   display: flex;
@@ -57,31 +56,15 @@ const ScInputGroup = styled.div`
     border-radius: 10px;
   }
 
-  option {
-  }
-
   label {
     width: 40%;
     margin-right: 10px;
   }
 `;
 
-const AddFanLetter = ({
-  inputs,
-  submitHandler,
-  inputChangeHandler,
-  error,
-  errorHandler,
-}) => {
+const AddFanLetter = ({ inputs, submitHandler, inputChangeHandler }) => {
   return (
     <ScFormGroup>
-      {error && (
-        <Modal
-          title={error.title}
-          detail={error.detail}
-          onConfirm={errorHandler}
-        />
-      )}
       <ScForm onSubmit={submitHandler}>
         <ScInputGroup>
           <label htmlFor='nickname'>닉네임</label>

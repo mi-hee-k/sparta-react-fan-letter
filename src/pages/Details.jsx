@@ -5,7 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteHandler, editHandler } from 'redux/modules/FanLetter';
 import ImgGroup from 'components/UI/ImgGroup';
-import Modal from 'components/UI/Modal';
 
 const ScDetailsItems = styled.div`
   display: flex;
@@ -136,6 +135,7 @@ const Details = () => {
 
     // 수정상태라면 textarea 보여주고 바뀐 content만 update 하기
     if (editInputShown) {
+      window.confirm('이대로 수정하시겠습니까?');
       dispatch(editHandler({ id, editInput }));
     }
   };
@@ -152,24 +152,12 @@ const Details = () => {
     }
   }, [editInputShown]);
 
-  // 모달 상태 변경
-  const errorHandler = () => {
-    setError(null);
-  };
-
   return (
     <div>
       {fanLetters.map((item) => {
         if (item.id === id) {
           return (
             <ScDetailsItems key={item.id}>
-              {error && (
-                <Modal
-                  title={error.title}
-                  detail={error.detail}
-                  onConfirm={errorHandler}
-                />
-              )}
               <ScDetailsItem>
                 <ScFanLetterHeader>
                   <div>
