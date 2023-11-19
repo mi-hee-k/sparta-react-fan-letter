@@ -139,7 +139,7 @@ const Home = () => {
         errorHandler={errorHandler}
       />
       <ScExpandGroup>
-        <Button onClick={expandToggler}>📣 りょういき てんきあ --- !!! </Button>
+        <Button onClick={expandToggler}>📣 りょういきてんかい --- !!! </Button>
       </ScExpandGroup>
       {/* 팬레터 */}
       {expand && <FanLetterList />}

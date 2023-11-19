@@ -20,7 +20,7 @@ const ScTitleGroup = styled.div`
   color: #fff;
   border-radius: 10px;
   padding: 10px;
-  width: 50%;
+  width: 40%;
   height: 50%;
   text-align: center;
 
@@ -40,10 +40,6 @@ const Header = () => {
       <ScTitleGroup>
         <Link to={'/'}>
           <ScTitle>주술회전 팬레터 컬렉션</ScTitle>
-          <p>
-            &#44;&#44; <br /> 살아가는 방식때문에
-            <br /> 후회하고 싶진 않아 <br /> &#44;&#44;
-          </p>
         </Link>
       </ScTitleGroup>
     </HeaderGroup>

@@ -35,11 +35,15 @@ export const setFanLetters = (payload) => {
   };
 };
 
+const saveToLocalStorage = (updatedFanLetter) => {
+  localStorage.setItem('fanLetters', JSON.stringify(updatedFanLetter));
+};
+
 const FanLetterReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FANLETTER:
       const newFanLetterList = [action.payload, ...state];
-      localStorage.setItem('fanLetters', JSON.stringify(newFanLetterList));
+      saveToLocalStorage(newFanLetterList);
       return newFanLetterList;
 
     case EDIT_FANLETTER:
@@ -48,14 +52,14 @@ const FanLetterReducer = (state = initialState, action) => {
           ? { ...item, content: action.payload.editInput }
           : item
       );
-      localStorage.setItem('fanLetters', JSON.stringify(editedFanLetterList));
+      saveToLocalStorage(editedFanLetterList);
       return editedFanLetterList;
 
     case DELETE_FANLETTER:
       const deletedFanLetterList = state.filter(
         (item) => item.id !== action.payload
       );
-      localStorage.setItem('fanLetters', JSON.stringify(deletedFanLetterList));
+      saveToLocalStorage(deletedFanLetterList);
       return deletedFanLetterList;
 
     case SET_FANLETTER:

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Button, { HomeBtn } from 'components/UI/Button';
 import styled from 'styled-components';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -99,6 +99,7 @@ const Details = () => {
   const fanLetters = useSelector((state) => state.FanLetterReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const editInputRef = useRef();
   const params = useParams();
   const { id } = params;
 
@@ -144,6 +145,13 @@ const Details = () => {
     setEditInput(e.target.value);
   };
 
+  // 수정상태일 때 textarea에 포커스
+  useEffect(() => {
+    if (editInputShown) {
+      editInputRef.current.focus();
+    }
+  }, [editInputShown]);
+
   // 모달 상태 변경
   const errorHandler = () => {
     setError(null);
@@ -175,7 +183,11 @@ const Details = () => {
                 <ScFanLetterBody>
                   <span>To : {item.writedTo}</span>
                   {editInputShown ? (
-                    <textarea value={editInput} onChange={editInputHandler} />
+                    <textarea
+                      ref={editInputRef}
+                      value={editInput}
+                      onChange={editInputHandler}
+                    />
                   ) : (
                     <textarea disabled defaultValue={item.content} />
                   )}
