@@ -101,18 +101,20 @@ const Details = () => {
   const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
+
   const [editInputShown, setEditInputShown] = useState(false);
   const [editInput, setEditInput] = useState('');
   const [error, setError] = useState();
 
   const delete_Handler = (id) => {
-    if (window.confirm('정말?')) {
+    if (window.confirm('정말 삭제하시겠습니까?')) {
       dispatch(deleteHandler(id));
       navigate('/');
     }
     return;
   };
 
+  // 팬레터 수정 함수
   const edit_Handler = () => {
     const selectedFanLetter = fanLetters.find((item) => item.id === id);
     setEditInputShown((editInputShown) => !editInputShown);
@@ -137,10 +139,12 @@ const Details = () => {
     }
   };
 
+  // 수정 입력창 변경
   const editInputHandler = (e) => {
     setEditInput(e.target.value);
   };
 
+  // 모달 상태 변경
   const errorHandler = () => {
     setError(null);
   };

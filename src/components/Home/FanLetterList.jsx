@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import FanLetterItem from './FanLetterItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFanLetters } from 'redux/modules/FanLetter';
 
 const ScFanLetterItems = styled.div`
   display: flex;
@@ -22,11 +23,20 @@ const ScFanLetterItems = styled.div`
 `;
 
 const FanLetterList = () => {
-  const fanLetters = useSelector((state) => state.FanLetterReducer);
+  const dispatch = useDispatch();
+  let fanLetters = useSelector((state) => state.FanLetterReducer);
   const selectedMember = useSelector((state) => state.SelectedMemberReducer);
   const filteredLetters = fanLetters.filter((item) =>
     selectedMember !== '전체' ? item.writedTo === selectedMember : true
   );
+
+  useEffect(() => {
+    const storedFanLetters = JSON.parse(localStorage.getItem('fanLetters'));
+    if (storedFanLetters) {
+      dispatch(setFanLetters(storedFanLetters));
+    }
+  }, [dispatch]);
+
   return (
     <ScFanLetterItems>
       {filteredLetters && filteredLetters.length > 0 ? (

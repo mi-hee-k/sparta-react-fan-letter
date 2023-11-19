@@ -3,6 +3,7 @@ import FakeData from '../../FakeData.json';
 const ADD_FANLETTER = 'fanLetter/ADD_FANLETTER';
 const EDIT_FANLETTER = 'fanLetter/EDIT_FANLETTER';
 const DELETE_FANLETTER = 'fanLetter/DELETE_FANLETTER';
+const SET_FANLETTER = 'fanLetter/SET_FANLETTER';
 
 const initialState = FakeData;
 
@@ -27,20 +28,38 @@ export const deleteHandler = (payload) => {
   };
 };
 
+export const setFanLetters = (payload) => {
+  return {
+    type: SET_FANLETTER,
+    payload,
+  };
+};
+
 const FanLetterReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_FANLETTER:
-      return [action.payload, ...state];
+      const newFanLetterList = [action.payload, ...state];
+      localStorage.setItem('fanLetters', JSON.stringify(newFanLetterList));
+      return newFanLetterList;
 
     case EDIT_FANLETTER:
-      return state.map((item) =>
+      const editedFanLetterList = state.map((item) =>
         item.id === action.payload.id
           ? { ...item, content: action.payload.editInput }
           : item
       );
+      localStorage.setItem('fanLetters', JSON.stringify(editedFanLetterList));
+      return editedFanLetterList;
 
     case DELETE_FANLETTER:
-      return state.filter((item) => item.id !== action.payload);
+      const deletedFanLetterList = state.filter(
+        (item) => item.id !== action.payload
+      );
+      localStorage.setItem('fanLetters', JSON.stringify(deletedFanLetterList));
+      return deletedFanLetterList;
+
+    case SET_FANLETTER:
+      return action.payload;
 
     default:
       return state;

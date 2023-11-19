@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 
+import { addHandler } from 'redux/modules/FanLetter';
+import { selectedHandler } from 'redux/modules/SelectedMember';
 import AddFanLetter from 'components/Home/AddFanLetter';
 import FanLetterList from 'components/Home/FanLetterList';
 import Tab from 'components/Home/Tab';
-import { useDispatch, useSelector } from 'react-redux';
-import { addHandler } from 'redux/modules/FanLetter';
-import { selectedHandler } from 'redux/modules/SelectedMember';
 import Button from 'components/UI/Button';
 import styled from 'styled-components';
 
@@ -27,21 +27,15 @@ const ScExpandGroup = styled.div`
 const Home = () => {
   // const fanLetters = useSelector((state) => state.FanLetterReducer);
   const selectedMember = useSelector((state) => state.SelectedMemberReducer);
-
   const dispatch = useDispatch();
 
   const [expand, setExpand] = useState(true);
-
+  const [error, setError] = useState();
   const [inputs, setInputs] = useState({
     nickname: '',
     content: '',
     writedTo: '',
   });
-
-  const inputChangeHandler = (e) => {
-    setInputs({ ...inputs, [e.target.name]: e.target.value });
-  };
-
   const [memberClick, setMemberClick] = useState({
     전체: false,
     고죠: false,
@@ -50,8 +44,12 @@ const Home = () => {
     노바라: false,
   });
 
-  const [error, setError] = useState();
+  // 입력창 변경
+  const inputChangeHandler = (e) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  };
 
+  // 날짜 포맷팅
   const formattedDate = (currentDate) => {
     return new Intl.DateTimeFormat('ko-KR', {
       year: 'numeric',
@@ -64,6 +62,7 @@ const Home = () => {
     }).format(currentDate);
   };
 
+  // 팬레터 추가함수
   const submitHandler = (e) => {
     e.preventDefault();
     if (
@@ -104,6 +103,12 @@ const Home = () => {
     });
   };
 
+  // 팬레터 토글
+  const expandToggler = () => {
+    setExpand((expand) => !expand);
+  };
+
+  // 탭 변경
   const clickHandler = (e) => {
     dispatch(selectedHandler(e.target.innerHTML));
     setInputs({
@@ -116,10 +121,7 @@ const Home = () => {
     });
   };
 
-  const expandToggler = () => {
-    setExpand((expand) => !expand);
-  };
-
+  // 모달 상태변경
   const errorHandler = () => {
     setError(null);
   };
