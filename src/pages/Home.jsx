@@ -121,6 +121,7 @@ const Home = () => {
         submitHandler={submitHandler}
         inputChangeHandler={inputChangeHandler}
       />
+      {/* 팬레터 펼치기 */}
       <ScExpandGroup>
         <Button onClick={expandToggler}>📣 りょういきてんかい --- !!! </Button>
       </ScExpandGroup>

@@ -104,7 +104,6 @@ const Details = () => {
 
   const [editInputShown, setEditInputShown] = useState(false);
   const [editInput, setEditInput] = useState('');
-  const [error, setError] = useState();
 
   const delete_Handler = (id) => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
