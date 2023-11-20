@@ -5,7 +5,7 @@ import FanLetterItem from './FanLetterItem';
 import { useDispatch, useSelector } from 'react-redux';
 import { setFanLetters } from 'redux/modules/FanLetter';
 
-const ScFanLetterItems = styled.div`
+const ScFanLetterItems = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 20px;

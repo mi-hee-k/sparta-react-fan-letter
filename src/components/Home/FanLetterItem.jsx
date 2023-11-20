@@ -2,7 +2,7 @@ import ImgGroup from 'components/UI/ImgGroup';
 import React from 'react';
 import styled from 'styled-components';
 
-const ScFanLetterItem = styled.div`
+const ScFanLetterItem = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
