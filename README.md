@@ -5,7 +5,7 @@ React와 redux를 사용한 팬레터함 만들기
 좋아하는 애니 캐릭터에게 편지를 남길 수 있는 팬레터함 사이트 입니다.
 
 # 🔗 배포링크
-fan-letter-weld.vercel.app
+[보러가기](http://fan-letter-weld.vercel.app)   
 
 # ⌚ 개발기간
 23.11.10 - 23.11.19
