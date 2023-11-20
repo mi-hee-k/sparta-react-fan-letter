@@ -11,7 +11,8 @@ React와 redux를 사용한 팬레터함 만들기
 23.11.10 - 23.11.19
 
 # 파일구조
-![image](https://github.com/mi-hee-k/sparta-react-fan-letter/assets/90510192/c30c9d65-889f-4b1b-a366-50d18591c61e)
+![image](https://github.com/mi-hee-k/sparta-react-fan-letter/assets/90510192/d581dcd9-6763-49c8-b7a0-8670830b6490)
+
 
 
 # 📌 주요기능
